@@ -1,0 +1,161 @@
+{% extends '../base.html' %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block styles %}
+<link href="{% static 'css/car_detail.css' %}" rel="stylesheet">
+{% endblock styles %}
+
+{% block content %}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container pb50">
+    <div class="row">
+        <div class="col-md-9 mb40">
+            <article>
+                <img src="https://images.unsplash.com/photo-1455734729978-db1ae4f687fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"
+                     alt="" class="img-fluid mb30">
+                <div class="post-content">
+                    <h3>{{ car.title }}</h3>
+                    <ul class="post-meta list-inline">
+                        <li class="list-inline-item">
+                            <i class="fa fa-user-circle-o"></i> <a href="#">{{ car.author.username }}</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <i class="fa fa-calendar-o"></i> <a href="#">{{ car.category }}</a>
+                        </li>
+                    </ul>
+                    <h3>{{ car.price }}</h3>
+                    <br>
+                    <h4 class="lead">Description</h4>
+                    <p>{{ car.description }}</p>
+                    <br>
+                    <h4 class="lead">Engine:</h4>
+                    <p>{{ car.engine }}</p>
+                    <br>
+                    <h4 class="lead">Release:</h4>
+                    <p>{{ car.release_auto }}</p>
+                    <br>
+                    <h4 class="lead">Color:</h4>
+                    <p>{{ car.color }}</p>
+                    <br>
+                    <h4 class="lead">Transmission:</h4>
+                    <p>{{ car.transmission }}</p>
+                    <br>
+                    <h4 class="lead">Rul:</h4>
+                    <p>{{ car.rul }}</p>
+                    <br>
+                    <ul class="list-inline share-buttons">
+                        <li class="list-inline-item">Share Post:</li>
+                        <li class="list-inline-item">
+                            <a href="#" class="social-icon-sm si-dark si-colored-facebook si-gray-round">
+                                <i class="fa fa-facebook"></i>
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="social-icon-sm si-dark si-colored-twitter si-gray-round">
+                                <i class="fa fa-twitter"></i>
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="social-icon-sm si-dark si-colored-linkedin si-gray-round">
+                                <i class="fa fa-linkedin"></i>
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                    {% if author %}
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <a href="{% url 'car_update' car.id %}">Update</a>
+                        </div>
+                        <div class="col-lg-3">
+                            <a href="{% url 'car_delete' car.id %}">Delete</a>
+                        </div>
+                    </div>
+                    <hr class="invis1">
+                    {% endif %}
+
+                    <hr class="mb40">
+                    <h4 class="mb40 text-uppercase font500">About Author</h4>
+                    <div class="media mb40">
+                        <i class="d-flex mr-3 fa fa-user-circle fa-5x text-primary"></i>
+                        <div class="media-body">
+                            <h5 class="mt-0 font700">{{ car.author.username }}</h5>
+                            <b>Email:</b> {{ car.author.email }}<br>
+                            <b>Phone:</b> {{ car.author.phone }}
+                        </div>
+                    </div>
+                    <hr class="mb40">
+                    <h4 class="mb40 text-uppercase font500">Comments</h4>
+                    <div class="media mb40">
+                        <i class="d-flex mr-3 fa fa-user-circle-o fa-3x"></i>
+                        <div class="media-body">
+                            <h5 class="mt-0 font400 clearfix">
+                                <a href="#" class="float-right">Reply</a>
+                                Jane Doe</h5> Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum
+                            in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
+                            Donec lacinia congue felis in faucibus.
+                        </div>
+                    </div>
+                    <div class="media mb40">
+                        <i class="d-flex mr-3 fa fa-user-circle-o fa-3x"></i>
+                        <div class="media-body">
+                            <h5 class="mt-0 font400 clearfix">
+                                <a href="#" class="float-right">Reply</a>
+                                Jane Doe</h5> Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum
+                            in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
+                            Donec lacinia congue felis in faucibus.
+                        </div>
+                    </div>
+                    <div class="media mb40">
+                        <i class="d-flex mr-3 fa fa-user-circle-o fa-3x"></i>
+                        <div class="media-body">
+                            <h5 class="mt-0 font400 clearfix">
+                                <a href="#" class="float-right">Reply</a>
+                                Jane Doe</h5> Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum
+                            in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
+                            Donec lacinia congue felis in faucibus.
+                        </div>
+                    </div>
+                    <hr class="mb40">
+                    <h4 class="mb40 text-uppercase font500">Post a comment</h4>
+                    <form role="form">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" placeholder="john@doe.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Comment</label>
+                            <textarea class="form-control" rows="5" placeholder="Comment"></textarea>
+                        </div>
+                        <div class="clearfix float-right">
+                            <button type="button" class="btn btn-primary btn-lg">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </article>
+            <!-- post article-->
+
+        </div>
+        <div class="col-md-3 mb40">
+            <div class="mb40">
+                <h4 class="lead">Categories</h4>
+                {% for category in categories %}
+                <ul class="list-unstyled categories">
+                    <li><a href="{% url 'category_details' category.id %}">{{ category.title }}</a></li>
+                </ul>
+                {% endfor %}
+            </div>
+            <!--/col-->
+        </div>
+    </div>
+</div>
+{% endblock content %}
