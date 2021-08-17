@@ -1,5 +1,8 @@
 import os
 from pathlib import Path
+from django.core.checks import database
+import dj_database_url
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -7,7 +10,7 @@ SECRET_KEY = 'django-insecure-te%-*1i!ci@2%&!613*)j!^^bqerxs#q=v+2pgza4rgr%wizjz
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -101,3 +104,7 @@ AUTH_USER_MODEL = 'users.Profile'
 
 LOGIN_REDIRECT_URL = 'main_page'
 LOGIN_URL = 'login'
+
+
+db_form_env = dj_database_url.config()
+DATABASES['default'].update(db_form_env)
