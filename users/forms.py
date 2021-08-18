@@ -5,15 +5,19 @@ from django.contrib.auth.models import User
 from users.models import Profile
 
 
-class ProfileRegistrationForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
-        model = Profile
-        fields = UserCreationForm.Meta.fields + ('phone', 'email', 'image')
+class ProfileRegistrationForm(forms.ModelForm):
+    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
 
-    def __init__(self, *args, **kwargs):
-        super(ProfileRegistrationForm, self).__init__(*args, **kwargs)
-        for fieldname in ['username', 'password1', 'password2']:
-            self.fields[fieldname].help_text = None
+    class Meta:
+        model = Profile
+        fields = ('username', 'email', 'phone', 'image')
+
+    def clean_password2(self):
+        cd = self.cleaned_data
+        if cd['password'] != cd['password2']:
+            raise forms.ValidationError('Passwords don\'t match.')
+        return cd['password2']
 
 
 class ProfileUpdateForm(forms.ModelForm):

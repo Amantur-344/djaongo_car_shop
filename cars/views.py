@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 
 from cars.forms import CarCreateForm, CarUpdateForm
 from cars.models import Category, Car
+from users.models import Profile
 
 
 def main_page(request):
@@ -38,6 +39,16 @@ def create_car(request):
 @login_required
 def my_cars(request):
     cars = Car.objects.filter(author=request.user)
+    paginator = Paginator(cars, 2)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'car/main_page.html',
+                  context={'cars': page_obj})
+
+
+def user_cars(request, pk):
+    user = Profile.objects.filter(id=pk).first()
+    cars = Car.objects.filter(author=user)
     paginator = Paginator(cars, 2)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

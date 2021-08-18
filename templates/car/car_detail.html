@@ -13,133 +13,154 @@
     <div class="row">
         <div class="col-md-9 mb40">
             <article>
-                <img src="https://images.unsplash.com/photo-1455734729978-db1ae4f687fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"
-                     alt="" class="img-fluid mb30">
+                <img src="{{ car.image.url }}"
+                     alt="" class="img-fluid mb30" width="800" height="500">
                 <div class="post-content">
                     <h3>{{ car.title }}</h3>
                     <ul class="post-meta list-inline">
                         <li class="list-inline-item">
-                            <i class="fa fa-user-circle-o"></i> <a href="#">{{ car.author.username }}</a>
+                            <i class="fa fa-user-circle-o"></i> <a href="{% url 'user_cars' car.author.id %}">{{
+                            car.author.username }}</a>
                         </li>
                         <li class="list-inline-item">
-                            <i class="fa fa-calendar-o"></i> <a href="#">{{ car.category }}</a>
+                            <i class="fa fa-calendar-o"></i> <a href="{% url 'category_details' car.category.id>{{ car.category }}</a>
                         </li>
                     </ul>
                     <h3>{{ car.price }}</h3>
                     <br>
-                    <h4 class="lead">Description</h4>
-                    <p>{{ car.description }}</p>
-                    <br>
-                    <h4 class="lead">Engine:</h4>
-                    <p>{{ car.engine }}</p>
-                    <br>
-                    <h4 class="lead">Release:</h4>
-                    <p>{{ car.release_auto }}</p>
-                    <br>
-                    <h4 class="lead">Color:</h4>
-                    <p>{{ car.color }}</p>
-                    <br>
-                    <h4 class="lead">Transmission:</h4>
-                    <p>{{ car.transmission }}</p>
-                    <br>
-                    <h4 class="lead">Rul:</h4>
-                    <p>{{ car.rul }}</p>
-                    <br>
-                    <ul class="list-inline share-buttons">
-                        <li class="list-inline-item">Share Post:</li>
-                        <li class="list-inline-item">
-                            <a href="#" class="social-icon-sm si-dark si-colored-facebook si-gray-round">
-                                <i class="fa fa-facebook"></i>
-                                <i class="fa fa-facebook"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#" class="social-icon-sm si-dark si-colored-twitter si-gray-round">
-                                <i class="fa fa-twitter"></i>
-                                <i class="fa fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#" class="social-icon-sm si-dark si-colored-linkedin si-gray-round">
-                                <i class="fa fa-linkedin"></i>
-                                <i class="fa fa-linkedin"></i>
-                            </a>
-                        </li>
-                    </ul>
+                    <h4 class=" lead">Description</h4>
+                            <p>{{ car.description }}</p>
+                            <br>
+                            <h4 class="lead">Engine:</h4>
+                            <p>{{ car.engine }}</p>
+                            <br>
+                            <h4 class="lead">Release:</h4>
+                            <p>{{ car.release_auto }}</p>
+                            <br>
+                            <h4 class="lead">Color:</h4>
+                            <p>{{ car.color }}</p>
+                            <br>
+                            <h4 class="lead">Transmission:</h4>
+                            <p>{{ car.transmission }}</p>
+                            <br>
+                            <h4 class="lead">Rul:</h4>
+                            <p>{{ car.rul }}</p>
+                            <br>
+                            <ul class="list-inline share-buttons">
+                                <li class="list-inline-item">Share Post:</li>
+                                <li class="list-inline-item">
+                                    <a href="#" class="social-icon-sm si-dark si-colored-facebook si-gray-round">
+                                        <i class="fa fa-facebook"></i>
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#" class="social-icon-sm si-dark si-colored-twitter si-gray-round">
+                                        <i class="fa fa-twitter"></i>
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#" class="social-icon-sm si-dark si-colored-linkedin si-gray-round">
+                                        <i class="fa fa-linkedin"></i>
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <br>
+                            {% if author %}
+                            <div class="row">
+                                <div class="col-lg-3" style="width:20px;height:20px;">
+                                    <a href="{% url 'car_update' car.id %}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                             fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                            <path fill-rule="evenodd"
+                                                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div class="col-lg-3">
+                                    <a href="{% url 'car_delete' car.id %}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                             fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                            <path fill-rule="evenodd"
+                                                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <hr class="invis1">
+                            {% endif %}
 
-                    {% if author %}
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <a href="{% url 'car_update' car.id %}">Update</a>
-                        </div>
-                        <div class="col-lg-3">
-                            <a href="{% url 'car_delete' car.id %}">Delete</a>
-                        </div>
-                    </div>
-                    <hr class="invis1">
-                    {% endif %}
-
-                    <hr class="mb40">
-                    <h4 class="mb40 text-uppercase font500">About Author</h4>
-                    <div class="media mb40">
-                        <i class="d-flex mr-3 fa fa-user-circle fa-5x text-primary"></i>
-                        <div class="media-body">
-                            <h5 class="mt-0 font700">{{ car.author.username }}</h5>
-                            <b>Email:</b> {{ car.author.email }}<br>
-                            <b>Phone:</b> {{ car.author.phone }}
-                        </div>
-                    </div>
-                    <hr class="mb40">
-                    <h4 class="mb40 text-uppercase font500">Comments</h4>
-                    <div class="media mb40">
-                        <i class="d-flex mr-3 fa fa-user-circle-o fa-3x"></i>
-                        <div class="media-body">
-                            <h5 class="mt-0 font400 clearfix">
-                                <a href="#" class="float-right">Reply</a>
-                                Jane Doe</h5> Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum
-                            in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
-                            Donec lacinia congue felis in faucibus.
-                        </div>
-                    </div>
-                    <div class="media mb40">
-                        <i class="d-flex mr-3 fa fa-user-circle-o fa-3x"></i>
-                        <div class="media-body">
-                            <h5 class="mt-0 font400 clearfix">
-                                <a href="#" class="float-right">Reply</a>
-                                Jane Doe</h5> Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum
-                            in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
-                            Donec lacinia congue felis in faucibus.
-                        </div>
-                    </div>
-                    <div class="media mb40">
-                        <i class="d-flex mr-3 fa fa-user-circle-o fa-3x"></i>
-                        <div class="media-body">
-                            <h5 class="mt-0 font400 clearfix">
-                                <a href="#" class="float-right">Reply</a>
-                                Jane Doe</h5> Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum
-                            in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
-                            Donec lacinia congue felis in faucibus.
-                        </div>
-                    </div>
-                    <hr class="mb40">
-                    <h4 class="mb40 text-uppercase font500">Post a comment</h4>
-                    <form role="form">
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" class="form-control" placeholder="John Doe">
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" class="form-control" placeholder="john@doe.com">
-                        </div>
-                        <div class="form-group">
-                            <label>Comment</label>
-                            <textarea class="form-control" rows="5" placeholder="Comment"></textarea>
-                        </div>
-                        <div class="clearfix float-right">
-                            <button type="button" class="btn btn-primary btn-lg">Submit</button>
-                        </div>
-                    </form>
+                            <hr class="mb40">
+                            <h4 class="mb40 text-uppercase font500">About Author</h4>
+                            <div class="media mb40">
+                                <i class="d-flex mr-3 fa fa-user-circle fa-5x text-primary"></i>
+                                <div class="media-body">
+                                    <h5 class="mt-0 font700">{{ car.author.username }}</h5>
+                                    <b>Email:</b> {{ car.author.email }}<br>
+                                    <b>Phone:</b> {{ car.author.phone }}
+                                </div>
+                            </div>
+                            <hr class="mb40">
+                            <h4 class="mb40 text-uppercase font500">Comments</h4>
+                            <div class="media mb40">
+                                <i class="d-flex mr-3 fa fa-user-circle-o fa-3x"></i>
+                                <div class="media-body">
+                                    <h5 class="mt-0 font400 clearfix">
+                                        <a href="#" class="float-right">Reply</a>
+                                        Jane Doe</h5> Nulla vel metus scelerisque ante sollicitudin. Cras purus odio,
+                                    vestibulum
+                                    in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
+                                    fringilla.
+                                    Donec lacinia congue felis in faucibus.
+                                </div>
+                            </div>
+                            <div class="media mb40">
+                                <i class="d-flex mr-3 fa fa-user-circle-o fa-3x"></i>
+                                <div class="media-body">
+                                    <h5 class="mt-0 font400 clearfix">
+                                        <a href="#" class="float-right">Reply</a>
+                                        Jane Doe</h5> Nulla vel metus scelerisque ante sollicitudin. Cras purus odio,
+                                    vestibulum
+                                    in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
+                                    fringilla.
+                                    Donec lacinia congue felis in faucibus.
+                                </div>
+                            </div>
+                            <div class="media mb40">
+                                <i class="d-flex mr-3 fa fa-user-circle-o fa-3x"></i>
+                                <div class="media-body">
+                                    <h5 class="mt-0 font400 clearfix">
+                                        <a href="#" class="float-right">Reply</a>
+                                        Jane Doe</h5> Nulla vel metus scelerisque ante sollicitudin. Cras purus odio,
+                                    vestibulum
+                                    in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
+                                    fringilla.
+                                    Donec lacinia congue felis in faucibus.
+                                </div>
+                            </div>
+                            <hr class="mb40">
+                            <h4 class="mb40 text-uppercase font500">Post a comment</h4>
+                            <form role="form">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" placeholder="John Doe">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" placeholder="john@doe.com">
+                                </div>
+                                <div class="form-group">
+                                    <label>Comment</label>
+                                    <textarea class="form-control" rows="5" placeholder="Comment"></textarea>
+                                </div>
+                                <div class="clearfix float-right">
+                                    <button type="button" class="btn btn-primary btn-lg">Submit</button>
+                                </div>
+                            </form>
                 </div>
             </article>
             <!-- post article-->
