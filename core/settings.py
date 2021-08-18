@@ -10,7 +10,7 @@ SECRET_KEY = 'django-insecure-te%-*1i!ci@2%&!613*)j!^^bqerxs#q=v+2pgza4rgr%wizjz
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['django-shop-car.herokuapp.com/', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
