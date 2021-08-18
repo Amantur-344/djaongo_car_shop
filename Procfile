@@ -1,1 +1,1 @@
-web: gunicorn Django_car_shop_2.wsgi
+web: gunicorn djaongo_car_shop.wsgi
